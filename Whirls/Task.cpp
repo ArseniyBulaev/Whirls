@@ -32,7 +32,7 @@ void Task::Run()
 
 		
 		_fileHandler.SaveState(_whirls);
-		_fileHandler.SaveH(t, H(0, 0, 0));
+		_fileHandler.SaveH(t, H(1, 0, 0));
 
 		t += dt;
 	}
