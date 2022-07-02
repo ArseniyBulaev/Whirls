@@ -12,7 +12,7 @@ Task::Task(double maxT, string inputPath, string outputPath, string hPath) : _fi
 	_whirls = _fileHandler.LoadInputs();
 }
 
-void Task::Run()
+void Task::RunExplicitMethod()
 {
 	double t = 0;
 
@@ -26,13 +26,13 @@ void Task::Run()
 	{
 		for (int i = 0; i < _whirls.size(); i++)
 		{
-			_whirls[i].x = _whirls[i].x - (dt / _whirls[i].g) * (dx - (H(i, 0, dy) - H(i, 0, 0)) / dy);
-			_whirls[i].y = _whirls[i].y - (dt / _whirls[i].g) * (dy + (H(i, dx, 0) - H(i, 0, 0)) / dx);
+			_whirls[i].x = _whirls[i].x + (dt / _whirls[i].g) * (H(i, 0, dy) - H(i, 0, 0)) / dy;
+			_whirls[i].y = _whirls[i].y - (dt / _whirls[i].g) * (H(i, dx, 0) - H(i, 0, 0)) / dx;
 		}
 
 		
 		_fileHandler.SaveState(_whirls);
-		_fileHandler.SaveH(t, H(1, 0, 0));
+		_fileHandler.SaveH(t, H());
 
 		t += dt;
 	}
@@ -40,24 +40,45 @@ void Task::Run()
 	
 }
 
-double Task::H(int i, double dx, double dy)
+double Task::H(int diffIndex, double dx, double dy)
 {
 	double sumH = 0;
 	double xI, yI, gI, xJ, yJ, gJ;
 
-	xI = _whirls[i].x;
-	yI = _whirls[i].y;
-	gI = _whirls[i].g;
 
-
-	for (int j = i + 1; j < _whirls.size(); j++)
+	for (int i = 0; i < _whirls.size(); i++)
 	{
-		xJ = _whirls[j].x;
-		yJ = _whirls[j].y;
-		gJ = _whirls[j].g;
+		xI = _whirls[i].x;
+		yI = _whirls[i].y;
+		gI = _whirls[i].g;
 
-		sumH += gI * gJ * log(pow(xI + dx - xJ, 2) + pow(yI + dy - yJ, 2));
+		if (i == diffIndex)
+		{
+			xI = _whirls[i].x + dx;
+			yI = _whirls[i].y + dy;
+		}
+
+
+		for (int j = i + 1; j < _whirls.size(); j++)
+		{
+			xJ = _whirls[j].x;
+			yJ = _whirls[j].y;
+			gJ = _whirls[j].g;
+
+			if (j == diffIndex)
+			{
+				xJ = _whirls[j].x + dx;
+				yJ = _whirls[j].y + dy;
+			}
+			
+			sumH += gI * gJ * log(pow(xI - xJ, 2) + pow(yI - yJ, 2));
+		}
 	}
 
 	return -1.0/ (4*M_PI) * sumH;
+}
+
+double Task::H()
+{
+	return H(0, 0, 0);
 }

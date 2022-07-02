@@ -9,8 +9,9 @@ class Task
 {
 	public:
 		Task(double maxT, string inputPath, string outputPath, string hPath);
-		void Run();
-		double H(int i, double dx, double dy);
+		void RunExplicitMethod();
+		double H(int diffIndex, double dx, double dy);
+		double H();
 
 	private:
 		FileHandler _fileHandler;

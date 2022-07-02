@@ -15,7 +15,7 @@ int main()
 
 	Task task(maxT, iputFilePath, outputFilePath, hFilePath);
 
-	task.Run();
+	task.RunExplicitMethod();
 	
 
 	return 0;
