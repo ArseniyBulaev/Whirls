@@ -130,11 +130,13 @@
   <ItemGroup>
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="Solver.cpp" />
     <ClCompile Include="Task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataModel.h" />
     <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="Solver.h" />
     <ClInclude Include="Task.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

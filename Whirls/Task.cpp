@@ -1,8 +1,5 @@
-#define _USE_MATH_DEFINES
-
 #include "Task.h"
-#include <iostream>
-#include <math.h>
+
 
 
 

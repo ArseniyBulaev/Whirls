@@ -1,9 +1,13 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
+
 #include <FileHandler.h>
 #include <DataModel.h>
 #include <string>
 #include <vector>
+#include <iostream>
+#include <math.h>
 
 class Task
 {

@@ -43,7 +43,7 @@ vector<Whirl> FileHandler::LoadInputs()
 	return whirls;
 }
 
-void FileHandler::SaveState(vector<Whirl> whirls)
+void FileHandler::SaveState(const vector<Whirl> &whirls)
 {
 
 	for (int i = 0; i < whirls.size(); i++)
@@ -64,7 +64,7 @@ void FileHandler::SaveH(double dt, double h)
 	_hFile << "Time: " << dt << " H: " << h << endl;
 }
 
-void FileHandler::WriteOutputHader(vector<Whirl> whirls)
+void FileHandler::WriteOutputHader(const vector<Whirl> &whirls)
 {
 	for (int i = 0; i < whirls.size(); i++)
 	{

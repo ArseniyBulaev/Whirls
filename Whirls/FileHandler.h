@@ -16,9 +16,9 @@ class FileHandler
 		FileHandler(string inputFilePath, string otputFilePath, string hFilePath);
 		~FileHandler();
 		vector<Whirl> LoadInputs();
-		void SaveState(vector<Whirl> whirls);
+		void SaveState(const vector<Whirl> &whirls);
 		void SaveH(double dt, double h);
-		void WriteOutputHader(vector<Whirl> whirls);
+		void WriteOutputHader(const vector<Whirl> &whirls);
 
 	private :
 		string		_inputFilePath;
