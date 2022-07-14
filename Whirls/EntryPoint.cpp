@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-	string filesDirectory = "E:\\DEV\\C++\\Whirls\\Whirls\\Files\\";
+	string filesDirectory = "Files\\";
 	string iputFilePath = filesDirectory + "input.txt";
 	string outputFilePath = filesDirectory + "output.txt";
 	string hFilePath = filesDirectory + "h.txt";
